@@ -79,6 +79,7 @@
             greeting: {
                 message: "Hello! I'm your e-commerce assistant. How can I help you today?",
                 options: [
+                    { text: "About TAUFAA", next: "taufaa" },
                     { text: "Order Status and Invoice", next: "orderStatus" },
                     { text: "Returns & Refunds", next: "returns" },
                     { text: "Product Questions", next: "productQuestions" },
@@ -93,12 +94,42 @@
                     { text: "Back to main menu", next: "greeting" }
                 ]
             },
+            orderOptions: {
+                message: "What would you like to do with your order?",
+                options: [
+                    { text: "📄 Get Invoice", next: "invoice" },
+                    { text: "🚚 Track Order Status", next: "trackStatus" },
+                    { text: "Back to main menu", next: "greeting" }
+                ],
+                inputExpected: false
+            },
+            invoice: {
+                message: "Here's your invoice link: [Download PDF]. If you need anything else, let me know.",
+                options: [
+                    { text: "Back to main menu", next: "greeting" }
+                ],
+                inputExpected: false
+            },
+            trackStatus: {
+                message: "Your order is on its way and should arrive in 2 days! 🚚📦",
+                options: [
+                    { text: "Back to main menu", next: "greeting" }
+                ],
+                inputExpected: false
+            },
+
             noOrderNumber: {
                 message: "No problem! I can look up your order by email. What's the email address associated with your account?",
                 options: [
                     { text: "Back to main menu", next: "greeting" }
                 ],
                 inputExpected: true
+            },
+            taufaa:{
+                message: "Taufaa is a custom apparel brand that lets you create personalized clothing with all-over prints. From T-shirts and hoodies to joggers and even pet wear, you can upload your own images, add text, and design unique pieces. Perfect for self-expression, events, or merch, with global shipping and premium quality.",
+                options: [
+                    { text: "Back to main menu", next: "greeting" }
+                ],
             },
             returns: {
                 message: "I can help with returns and refunds. What would you like to do?",
@@ -236,13 +267,6 @@
                     //{text: "image", next: "demo"}//instead of text find the word and rewrite it
                 //],
                 //inputExpected: true
-            },
-            invoice: {
-                message: "To get a invoice, Please provide me with your order number.",
-                options: [
-                    {text: "Back to main menu", next: "greeting"}
-                ],
-                inputExpected: true 
             }
         };
 
@@ -373,15 +397,38 @@
             } else if (message.toLowerCase().includes('account') || message.toLowerCase().includes('login')) {
                 selectOption('accountHelp');
             } else if (state.inputExpected) {
-                // For states expecting input, analyze the input
-                if (currentState === 'orderStatus' || currentState === 'noOrderNumber' || 
-                    currentState === 'startReturn' || currentState === 'refundStatus') {
-                    // Simulate order lookup
-                    if (message.toLowerCase().includes('don\'t') || message.toLowerCase().includes('no')) {
-                        displayBotMessage("I couldn't find your order. Please double-check your order number or contact customer support for help.");
+                 // For states expecting input, analyze the input
+                if (currentState === 'orderStatus') {
+                    if (message.toLowerCase().includes("don't") || message.toLowerCase().includes("no")) {
+                        displayBotMessage("I couldn't find your order. Please double-check your order number or contact support.");
+                        displayOptions(state.options);
                     } else {
-                        displayBotMessage(`I found your order #${Math.floor(Math.random() * 1000000)}.`);
+                        displayBotMessage(`Thanks! I found your order #${message}.`);
+                        currentState = 'orderOptions'; // 👈 Switch to new state
+                        const nextState = chatbotKnowledge['orderOptions'];
+                        displayBotMessage(nextState.message);
+                        displayOptions(nextState.options);
                     }
+                }
+
+                if (currentState === 'orderStatus') {
+                    userOrderNumber = message;
+                    if (message.toLowerCase().includes("don't") || message.toLowerCase().includes("no")) {
+                        displayBotMessage("I couldn't find your order. Please double-check your order number or contact customer support for help.");
+                        return;
+                    }
+                    displayBotMessage(`Order #${userOrderNumber} found. What would you like to do?`);
+                    displayOptions([
+                        { label: "📄 Download Invoice", value: "downloadInvoice" },
+                        { label: "🚚 Track Order Status", value: "trackStatus" }
+                    ]);
+                    currentState = 'orderOptions'; // move to a new state
+                    return;
+                }
+
+                // For states expecting input, analyze the input
+                if (currentState === 'startReturn' || currentState === 'refundStatus') {
+                    // Simulate order lookup
                     displayOptions(state.options);
                 } else if (currentState === 'checkAvailability') {
                     displayBotMessage(`The product "${message}" is currently in stock and available for delivery within 2 days.`);
