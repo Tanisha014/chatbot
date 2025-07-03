@@ -86,12 +86,22 @@
                     { text: "Custom order format", next: "custom" }
                 ]
             },
+            help:{
+                message:"Is there anything else I can help you with?",
+                options: [
+                    { text: "About TAUFAA", next: "taufaa" },
+                    { text: "Order Status and Invoice", next: "orderStatus" },
+                    { text: "Returns & Refunds", next: "returns" },
+                    { text: "Product Questions", next: "productQuestions" },
+                    { text: "Custom order format", next: "custom" }
+                ]
+            },
             orderStatus: {
                 message: "Please enter your order number so I can help with your order.",
                 inputExpected: true,
                 options: [
                     { text: "I don't have my order number", next: "noOrderNumber" },
-                    { text: "Back to main menu", next: "greeting" }
+                    { text: "Back to main menu", next: "help" }
                 ]
             },
             orderOptions: {
@@ -99,21 +109,21 @@
                 options: [
                     { text: "📄 Get Invoice", next: "invoice" },
                     { text: "🚚 Track Order Status", next: "trackStatus" },
-                    { text: "Back to main menu", next: "greeting" }
+                    { text: "Back to main menu", next: "help"}
                 ],
                 inputExpected: false
             },
             invoice: {
                 message: "Here's your invoice link: [Download PDF]. If you need anything else, let me know.",
                 options: [
-                    { text: "Back to main menu", next: "greeting" }
+                    { text: "Back to main menu", next: "help" }
                 ],
                 inputExpected: false
             },
             trackStatus: {
                 message: "Your order is on its way and should arrive in 2 days! 🚚📦",
                 options: [
-                    { text: "Back to main menu", next: "greeting" }
+                    { text: "Back to main menu", next: "help" }
                 ],
                 inputExpected: false
             },
@@ -121,14 +131,14 @@
             noOrderNumber: {
                 message: "No problem! I can look up your order by email. What's the email address associated with your account?",
                 options: [
-                    { text: "Back to main menu", next: "greeting" }
+                    { text: "Back to main menu", next: "help" }
                 ],
                 inputExpected: true
             },
             taufaa:{
                 message: "Taufaa is a custom apparel brand that lets you create personalized clothing with all-over prints. From T-shirts and hoodies to joggers and even pet wear, you can upload your own images, add text, and design unique pieces. Perfect for self-expression, events, or merch, with global shipping and premium quality.",
                 options: [
-                    { text: "Back to main menu", next: "greeting" }
+                    { text: "Back to main menu", next: "help" }
                 ],
             },
             returns: {
@@ -137,7 +147,7 @@
                     { text: "Issue with product", next: "issue" },
                     { text: "Check refund status", next: "refundStatus" },
                     { text: "Return policy", next: "returnPolicy" },
-                    { text: "Back to main menu", next: "greeting" }
+                    { text: "Back to main menu", next: "help" }
                 ]
             },
             issue: {
@@ -175,100 +185,216 @@
                 ]
             },
             productQuestions: {
-                message: "What product are you interested in? You can ask about availability, features, or compatibility.",
+                message: "What product are you interested in?",
                 options: [
-                    { text: "Check availability", next: "checkAvailability" },
-                    { text: "Product features", next: "productFeatures" },
-                    { text: "Compatibility questions", next: "compatibility" },
-                    { text: "Back to main menu", next: "greeting" }
-                ],
-                inputExpected: true
-            },
-            checkAvailability: {
-                message: "To check product availability, please provide the product name or SKU number.",
-                options: [
+                    { text: "T-shirt", next: "t_shirt" },
+                    { text: "Tank Top", next: "tank_top" },
+                    { text: "Shorts", next: "shorts" },
+                    { text: "T-shirt Dresses", next: "t_shirt_dresses" },
+                    { text: "Sweatshirts", next: "Sweatshirts" },
+                    { text: "Hoodies", next: "hoodies" },
+                    { text: "Joggers", next: "joggers" },
+                    { text: "Dog-Hoodies", next: "dog_hoddies" },
+                    { text: "Leggings", next: "leggings" },
+                    { text: "Co-ord set", next: "coordset" },
                     { text: "Back to product questions", next: "productQuestions" }
                 ],
                 inputExpected: true
             },
-            productFeatures: {
-                message: "Which product's features would you like to know about? Please provide the product name.",
+            t_shirt:{
+                message:`PRODUCT DETAILS:- 
+
+                100% polyester,
+                Crew neck,
+                Premium polyester knit 190gsm jersey,
+                High definition printing,
+                Regular fit,
+                Because it’s handmade for you, these T-shirts require 4-8 business days before they are shipped. Orders placed before midnight will be included in the following day’s batch for manufacturing.`,
                 options: [
-                    { text: "Back to product questions", next: "productQuestions" }
-                ],
-                inputExpected: true
-            },
-            compatibility: {
-                message: "For compatibility questions, please specify the products you're checking compatibility between.",
+                    { text: "Back to Products", next: "productFeatures" },
+                    { text: "Back to main menu", next: "help" }
+                    ],
+                    },
+            tank_top:{
+                message:`PRODUCT DETAILS:- 
+
+                • 100% polyester
+                • Reinforced taping along the armholes and neck
+                • Premium polyester knit 190gsm jersey
+                • High definition printing
+                • Regular fit
+
+                Because it’s handmade for you, these tanktops require 6-8 business days before they are shipped. Orders placed before midnight will be included in the following day’s batch for manufacturing. `,
                 options: [
-                    { text: "Back to product questions", next: "productQuestions" }
-                ],
-                inputExpected: true
-            },
-           
-            
-            updateAddress: {
-                message: "Please provide your new shipping address.",
+                    { text: "Back to Products", next: "productFeatures" },
+                    { text: "Back to main menu", next: "help" }
+                    ],
+                    },
+            shorts:{
+                message:`PRODUCT DETAILS:- 
+
+                • 20% cotton, 75% polyester, 5% spandex
+                • Soft cotton handfeel fabric surface
+                • Two side pockets and one back pocket
+                • Flat drawstring closure
+                • High definition printing colour
+                • Design will never peel, flake or crack
+
+                Because it’s handmade for you, this requires 3-6 business days before they are shipped. Orders placed before midnight will be included in the following day’s batch for manufacturing.`,
                 options: [
-                    { text: "Back to account updates", next: "updateAccount" }
-                ],
-                inputExpected: true
-            },
-            paymentMethods: {
-                message: "Would you like to add, update, or remove a payment method?",
+                    { text: "Back to Products", next: "productFeatures" },
+                    { text: "Back to main menu", next: "help" }
+                    ],
+                    },
+            t_shirt_dresses:{
+                message:`PRODUCT DETAILS:- 
+
+                • 100% Polyester single jersey
+                • Necktape finish
+                • Rounded hem
+                • High definition printing
+
+                Because it’s handmade for you, this requires 3-6 business days before they are shipped. Orders placed before midnight will be included in the following day’s batch for manufacturing.`,
                 options: [
-                    { text: "Add payment method", next: "addPayment" },
-                    { text: "Update payment method", next: "updatePayment" },
-                    { text: "Back to account help", next: "accountHelp" }
-                ]
-            },
+                    { text: "Back to Products", next: "productFeatures" },
+                    { text: "Back to main menu", next: "help" }
+                    ],
+                    },
+            sweatshirts:{
+                message:`PRODUCT DETAILS:- 
+
+                • 20% cotton, 75% polyester, 5% spandex
+                • Soft cotton handfeel fabric surface
+                • Brushed fleece fabric on the inside
+                • High definition printing colours
+                • Design will never peel, flake or crack
+
+                Because it’s handmade for you, these Sweatshirts require 4-8 business days before they are shipped. Orders placed before midnight will be included in the following day’s batch for manufacturing.`,
+                options: [
+                    { text: "Back to Products", next: "productFeatures" },
+                    { text: "Back to main menu", next: "help" }
+                    ],
+                    },
+            hoodies:{
+                message:`PRODUCT DETAILS:- 
+
+                • 20% cotton, 75% polyester, 5% spandex
+                • Unisex fit
+                • Soft cotton hand-feel fabric surface
+                • Brushed fleece fabric on the inside
+                • High definition printing colours
+                • Double layer hood
+                • Kangaroo pocket
+                • Design will never peel, flake or crack
+
+                Because it’s handmade for you, these hoodies require 6-8 business days before they are shipped. Orders placed before midnight will be included in the following day’s batch for manufacturing.`,
+                options: [
+                    { text: "Back to Products", next: "productFeatures" },
+                    { text: "Back to main menu", next: "help" }
+                    ],
+                    },
+            joggers:{
+                message:` PRODUCT DETAILS:- 
+
+                • 20% cotton, 75% polyester, 5% spandex
+                • Soft cotton handfeel fabric surface
+                • Brushed fleece fabric on the inside
+                • Double layer side insert pockets
+                • High definition printing colours
+                • Design will never peel, flake or crack
+
+                Because it’s handmade for you, these Joggers require 4-8 business days before they are shipped. Orders placed before midnight will be included in the following day’s batch for manufacturing. `,
+                options: [
+                    { text: "Back to Products", next: "productFeatures" },
+                    { text: "Back to main menu", next: "help" }
+                    ],
+                    },
+            leggings:{
+                message:`PRODUCT DETAILS:- 
+
+                • 82% polyester, 18% spandex
+                • Four-way stretch
+                • Squat proof
+                • Flatlock stitching
+                • Elastic waistband
+                • Microfiber yarn
+                • Inner waistband pocket
+
+                Because it's handmade for you, these Yoga pants require 6-8 business days before they are shipped. Orders placed before midnight will be included in the following day’s batch for manufacturing.
+                `,
+                options: [
+                    { text: "Back to Products", next: "productFeatures" },
+                    { text: "Back to main menu", next: "help" }
+                    ],
+                    },
+            dog_hoodies:{
+                message:`PRODUCT DETAILS:- 
+
+                • 20% cotton, 75% polyester, 5% spandex
+                • Soft cotton handfeel fabric surface
+                • Brushed fleece fabric on the inside
+                • Nylon zipper front closure
+                • Sturdy velcro pocket on the back
+                • Small opening on the back for dog harness
+                • High definition printing colours
+                • Design will never peel, flake or crack
+
+
+                Because it’s handmade for you, these hoodies require 4-8 business days before they are shipped. Orders placed before midnight will be included in the following day’s batch for manufacturing. `,
+                options: [
+                    { text: "Back to Products", next: "productFeatures" },
+                    { text: "Back to main menu", next: "help" }
+                    ],
+                    },
+            coordset:{
+                message:`PRODUCT DETAILS:- 
+
+                • 20% cotton, 75% polyester, 5% spandex
+                • Soft cotton hand feel fabric surface
+                • Two side pockets and one back pocket
+                • High rise fit
+                • Flat drawstring closure
+                • High definition printing colors
+                • Design will never peel, flake or crack.
+
+                Because it’s handmade for you, these require 4-8 business days before they are shipped. Orders placed before midnight will be included in the following day’s batch for manufacturing.`,
+                options: [
+                    { text: "Back to Products", next: "productFeatures" },
+                    { text: "Back to main menu", next: "help" }
+                    ],
+                    },
             fallback: {
-                message: "I couldn't find a solution to your problem. Please contact our customer support team at 1-800-555-0199 for further assistance.",
+                message: "I couldn't find a solution to your problem. Please contact our customer support team at support@taufaa.com for further assistance.",
                 options: [
-                    { text: "Back to main menu", next: "greeting" }
+                    { text: "Back to main menu", next: "help" }
                 ]
             },
             custom: {
-                message: "Contact us on mail",// mail to be written 
-               // message: "insert image",// image insertion url
-               // message: "select the design",
-                message: "select the size",
-               // message: "Confirm the demo",
-                options: [
-                    { text: "xs", next: "design"},
-                    { text: "s", next: "design"},
-                    { text: "m", next: "design"},
-                    { text: "l", next: "design"}
-                ],
-                inputExpected: true
-            },
-            design: {
-                message: "select the design",
-                options:[
-                    {text: "design 1", next: "image"},
-                    {text: "design 2", next: "image"},
-                    {text: "design 3", next: "image"}
-                ],
-                inputExpected: true
-            },
-            image: {
-                message: "insert the image",
-                options:[
-                    {text: "image", next: "demo"}//instead of text find the word and rewrite it
-                ],
-                inputExpected: true
-            },
-            demo: {
-                message: "choose the demo",
-                options: [
-                    { text: "Back to main menu", next: "greeting" }
-                ]
-                //options:[
-                    //{text: "image", next: "demo"}//instead of text find the word and rewrite it
-                //],
-                //inputExpected: true
-            }
-        };
+                message: `🛠 How Custom Orders Work
+
+                1️⃣ Pick Your Product
+                Choose what you want to customize — T-shirts, hoodies, joggers, tank tops, or dog hoodies. Select your preferred color, size, and quantity.
+
+                2️⃣ Share Your Design
+                Upload your design, logo, or idea (PNG, JPEG, or even a rough sketch). Don’t have one? Our design team can help bring your vision to life.
+
+                3️⃣ Get a Preview
+                We’ll create a digital mockup of your design on the chosen product and send it for your review.
+
+                4️⃣ Approve & Pay
+                Like what you see? Approve the mockup and proceed with the payment. Your order goes into production right after.
+
+                5️⃣ Sit Back & Relax
+                We custom print and stitch with care. Once your order is ready, you’ll receive tracking information for delivery.
+
+                📩 Ready to customize?
+                Reach out to our support team at support@taufaa.com to get started today.`,
+  
+            options: [
+                { text: "Back to main menu", next: "help" }
+            ]
+        }
+    };
 
         // DOM elements
         const chatContainer = document.getElementById('chatContainer');
@@ -353,12 +479,10 @@
                 optionsContainer.appendChild(button);
             });
         }
-
         // Select option
         function selectOption(nextState) {
             currentState = nextState;
             const state = chatbotKnowledge[currentState];
-            
             // If input is expected, don't display options yet
             if (state.inputExpected) {
                 displayBotMessage(state.message);
@@ -376,7 +500,6 @@
                 }
             }
         }
-
         // Handle user input
         function handleUserInput() {
             const message = userInput.value.trim();
@@ -410,36 +533,25 @@
                         displayOptions(nextState.options);
                     }
                 }
-
-                if (currentState === 'orderStatus') {
+                 if (currentState === 'orderStatus') {
                     userOrderNumber = message;
                     if (message.toLowerCase().includes("don't") || message.toLowerCase().includes("no")) {
                         displayBotMessage("I couldn't find your order. Please double-check your order number or contact customer support for help.");
+                        displayOptions(state.options); // Optional: if you want to allow retry
                         return;
                     }
+
                     displayBotMessage(`Order #${userOrderNumber} found. What would you like to do?`);
                     displayOptions([
-                        { label: "📄 Download Invoice", value: "downloadInvoice" },
-                        { label: "🚚 Track Order Status", value: "trackStatus" }
+                        { text: "📄 Download Invoice", next: "downloadInvoice" },
+                        { text: "🚚 Track Order Status", next: "trackStatus" }
                     ]);
-                    currentState = 'orderOptions'; // move to a new state
+                    
+                    currentState = 'orderOptions';
                     return;
                 }
 
-                // For states expecting input, analyze the input
-                if (currentState === 'startReturn' || currentState === 'refundStatus') {
-                    // Simulate order lookup
-                    displayOptions(state.options);
-                } else if (currentState === 'checkAvailability') {
-                    displayBotMessage(`The product "${message}" is currently in stock and available for delivery within 2 days.`);
-                    displayOptions(state.options);
-                } else if (currentState === 'productFeatures') {
-                    displayBotMessage(`Here are the key features of ${message}: [Feature 1], [Feature 2], [Feature 3]. Would you like more details about any specific feature?`);
-                    displayOptions(state.options);
-                } else {
-                    // Default fallback for unexpected input
-                    selectOption('fallback');
-                }
+                
             } else {
                 // If no specific pattern matched and no input expected, go to fallback
                 selectOption('fallback');
